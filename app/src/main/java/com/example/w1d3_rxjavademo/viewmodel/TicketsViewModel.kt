@@ -7,8 +7,9 @@ import com.example.w1d3_rxjavademo.network.TicketsRepository
 import com.example.w1d3_rxjavademo.network.model.Price
 import com.example.w1d3_rxjavademo.network.model.Ticket
 import io.reactivex.disposables.CompositeDisposable
+import javax.inject.Inject
 
-class TicketsViewModel(private val repository: TicketsRepository): ViewModel() {
+class TicketsViewModel @Inject constructor(private val repository: TicketsRepository): ViewModel() {
 
     private val disposable = CompositeDisposable()
     private val ticketLiveData = MutableLiveData<TicketState>()

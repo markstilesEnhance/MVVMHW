@@ -2,14 +2,12 @@ package com.example.w1d3_rxjavademo.network
 
 import com.example.w1d3_rxjavademo.network.model.Price
 import com.example.w1d3_rxjavademo.network.model.Ticket
-import com.example.w1d3_rxjavademo.network.ApiClient.client
 import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
+import javax.inject.Inject
 
-class TicketsRepository {
-
-    private val ticketService: ApiService = client!!.create(ApiService::class.java)
+class TicketsRepository @Inject constructor(private val ticketService: ApiService) {
 
     fun getTickets(from: String, to: String): Single<MutableList<Ticket>> {
         return getTicketsFromRemote(from, to)

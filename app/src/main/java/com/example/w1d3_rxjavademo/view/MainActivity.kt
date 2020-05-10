@@ -16,6 +16,7 @@ import kotlin.math.roundToInt
 import com.example.w1d3_rxjavademo.network.TicketsRepository
 import com.example.w1d3_rxjavademo.viewmodel.TicketsVMFactory
 import com.example.w1d3_rxjavademo.viewmodel.TicketsViewModel
+import javax.inject.Inject
 
 class MainActivity : AppCompatActivity() {
 
@@ -24,12 +25,14 @@ class MainActivity : AppCompatActivity() {
     lateinit var mAdapter: TicketsAdapter
     private var ticketsList: MutableList<Ticket> = mutableListOf()
     lateinit var recyclerView: RecyclerView
-    private var viewModelFactory: TicketsVMFactory = TicketsVMFactory(TicketsRepository())
+
+    @Inject
+    lateinit var viewModelFactory: TicketsVMFactory
     private lateinit var viewModel: TicketsViewModel
     private var position = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
-
+        TicketsApplication.ticketComponent.inject(this)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         val toolbar: Toolbar = findViewById(R.id.toolbar)
